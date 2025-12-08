@@ -12,7 +12,7 @@ set -ouex pipefail
 # this installs a package from fedora repos
 dnf config-manager addrepo --from-repofile=https://repo.fortinet.com/repo/forticlient/7.4/centos/8/os/x86_64/fortinet.repo
 
-dnf5 install -y htop mc btop forticlient git-credential-libsecret
+dnf5 install -y --replacefiles htop mc btop forticlient git-credential-libsecret
 
 
 # Use a COPR Example:
