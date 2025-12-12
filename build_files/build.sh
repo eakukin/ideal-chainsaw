@@ -10,7 +10,7 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y mc btop openconnect NetworkManager-openconnect plasma-nm-openconnect git-credential-libsecret lm_sensors vdpauinfo ffmpeg-free libavcodec-freeworld intel-media-driver libavcodec-freeworld mesa-vulkan-drivers-freeworld
+dnf5 install -y mc btop openconnect NetworkManager-openconnect plasma-nm-openconnect git-credential-libsecret lm_sensors vdpauinfo ffmpeg-free intel-gpu-tools
 
 # Use a COPR Example:
 #
