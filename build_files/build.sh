@@ -12,6 +12,14 @@ set -ouex pipefail
 # this installs a package from fedora repos
 dnf5 install -y mc btop openconnect NetworkManager-openconnect plasma-nm-openconnect git-credential-libsecret lm_sensors vdpauinfo ffmpeg-free intel-gpu-tools
 
+#install Visual Studio Code from Microsoft's repo
+rpm --import https://packages.microsoft.com/keys/microsoft.asc && echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+dnf5 check-update && dnf5 install code
+
+# Install latest Vivaldi browser
+VIVALDI_LATEST=$(curl -s https://repo.vivaldi.com/stable/rpm/x86_64/ | grep -oP 'vivaldi-stable-[0-9.]+-[0-9]+\.x86_64\.rpm' | sort -V | tail -n1)
+dnf5 install -y "https://repo.vivaldi.com/stable/rpm/x86_64/${VIVALDI_LATEST}"
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
