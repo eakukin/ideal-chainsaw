@@ -16,20 +16,9 @@ dnf5 install -y mc btop openconnect NetworkManager-openconnect plasma-nm-opencon
 rpm --import https://packages.microsoft.com/keys/microsoft.asc && echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 dnf5 check-update && dnf5 install code
 
-# Install latest Vivaldi browser to /usr/local instead of /opt
+# Install latest Vivaldi browser
 VIVALDI_LATEST=$(curl -s https://repo.vivaldi.com/stable/rpm/x86_64/ | grep -oP 'vivaldi-stable-[0-9.]+-[0-9]+\.x86_64\.rpm' | sort -V | tail -n1)
-cd /tmp
-curl -LO "https://repo.vivaldi.com/stable/rpm/x86_64/${VIVALDI_LATEST}"
-rpm2cpio "${VIVALDI_LATEST}" | cpio -idmv
-# Move from extracted /opt to /usr/local
-mv opt/vivaldi /usr/local/
-# Install desktop files and icons to standard locations
-if [ -d usr/share ]; then
-    cp -r usr/share/* /usr/share/
-fi
-# Clean up
-rm -rf opt usr "${VIVALDI_LATEST}"
-cd -
+dnf5 install --nogpgcheck -y "https://repo.vivaldi.com/stable/rpm/x86_64/${VIVALDI_LATEST}"
 
 # Use a COPR Example:
 #
