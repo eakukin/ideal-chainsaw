@@ -18,7 +18,7 @@ dnf5 check-update && dnf5 install code
 
 # Install latest Vivaldi browser
 VIVALDI_LATEST=$(curl -s https://repo.vivaldi.com/stable/rpm/x86_64/ | grep -oP 'vivaldi-stable-[0-9.]+-[0-9]+\.x86_64\.rpm' | sort -V | tail -n1)
-dnf5 install -y "https://repo.vivaldi.com/stable/rpm/x86_64/${VIVALDI_LATEST}"
+dnf5 install --nogpgcheck -y "https://repo.vivaldi.com/stable/rpm/x86_64/${VIVALDI_LATEST}"
 
 # Use a COPR Example:
 #
