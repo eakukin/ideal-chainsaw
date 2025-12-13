@@ -10,7 +10,7 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y mc btop openconnect NetworkManager-openconnect plasma-nm-openconnect git-credential-libsecret lm_sensors vdpauinfo ffmpeg-free intel-gpu-tools
+dnf5 install -y mc btop openconnect NetworkManager-openconnect plasma-nm-openconnect git-credential-libsecret lm_sensors ffmpeg-free intel-gpu-tools
 
 #install Visual Studio Code from Microsoft's repo
 rpm --import https://packages.microsoft.com/keys/microsoft.asc && echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
@@ -22,7 +22,6 @@ cd /tmp
 curl -LO "https://repo.vivaldi.com/stable/rpm/x86_64/${VIVALDI_LATEST}"
 rpm2cpio "${VIVALDI_LATEST}" | cpio -idmv
 # Move from extracted /opt to /usr/local
-mkdir -p /usr/local
 mv opt/vivaldi /usr/local/
 # Install desktop files and icons to standard locations
 if [ -d usr/share ]; then
