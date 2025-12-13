@@ -17,8 +17,9 @@ VIVALDI_LATEST=$(curl -s https://repo.vivaldi.com/stable/rpm/x86_64/ | grep -oP 
 dnf5 install --nogpgcheck -y "https://repo.vivaldi.com/stable/rpm/x86_64/${VIVALDI_LATEST}"
 
 # Install latest VS Code
-VSCODE_LATEST=$(curl -Ls -o /dev/null -w '%{url_effective}' https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64)
-dnf5 install --nogpgcheck -y "${VSCODE_LATEST}"
+wget -O /tmp/vscode.rpm "https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64"
+dnf5 install --nogpgcheck -y /tmp/vscode.rpm
+rm -f /tmp/vscode.rpm
 
 # Use a COPR Example:
 #
