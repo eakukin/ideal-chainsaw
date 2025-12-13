@@ -9,17 +9,16 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
-#install Visual Studio Code from Microsoft's repo
-rpm --import https://packages.microsoft.com/keys/microsoft.asc && echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
-dnf5 check-update
-
 # this installs a package from fedora repos
-dnf5 install -y code mc btop openconnect NetworkManager-openconnect plasma-nm-openconnect git-credential-libsecret lm_sensors ffmpeg-free intel-gpu-tools vlc
-
+dnf5 install -y  mc btop openconnect NetworkManager-openconnect plasma-nm-openconnect git-credential-libsecret lm_sensors ffmpeg-free intel-gpu-tools vlc
 
 # Install latest Vivaldi browser
 VIVALDI_LATEST=$(curl -s https://repo.vivaldi.com/stable/rpm/x86_64/ | grep -oP 'vivaldi-stable-[0-9.]+-[0-9]+\.x86_64\.rpm' | sort -V | tail -n1)
 dnf5 install --nogpgcheck -y "https://repo.vivaldi.com/stable/rpm/x86_64/${VIVALDI_LATEST}"
+
+# Install latest VS Code
+VSCODE_LATEST=$(curl -Ls -o /dev/null -w '%{url_effective}' https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64)
+dnf5 install --nogpgcheck -y "${VSCODE_LATEST}"
 
 # Use a COPR Example:
 #
