@@ -21,6 +21,11 @@ wget -O /tmp/vscode.rpm "https://code.visualstudio.com/sha/download?build=stable
 dnf5 install --nogpgcheck -y /tmp/vscode.rpm
 rm -f /tmp/vscode.rpm
 
+#Ghosty terminal
+dnf5 copr enable scottames/ghostty
+dnf5 install -y ghostty
+dnf5 -y copr disable scottames/ghostty
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
