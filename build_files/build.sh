@@ -12,6 +12,9 @@ set -ouex pipefail
 # this installs a package from fedora repos
 dnf5 install -y mc btop openconnect NetworkManager-openconnect plasma-nm-openconnect git-credential-libsecret lm_sensors ffmpeg-free intel-gpu-tools vlc
 
+# Remove plasma-discover
+dnf5 remove -y plasma-discover
+
 # Install latest Vivaldi browser
 VIVALDI_LATEST=$(curl -s https://repo.vivaldi.com/stable/rpm/x86_64/ | grep -oP 'vivaldi-stable-[0-9.]+-[0-9]+\.x86_64\.rpm' | sort -V | tail -n1)
 dnf5 install --nogpgcheck -y "https://repo.vivaldi.com/stable/rpm/x86_64/${VIVALDI_LATEST}"
@@ -21,10 +24,10 @@ wget -O /tmp/vscode.rpm "https://code.visualstudio.com/sha/download?build=stable
 dnf5 install --nogpgcheck -y /tmp/vscode.rpm
 rm -f /tmp/vscode.rpm
 
-#Ghosty terminal
-dnf5 -y copr enable scottames/ghostty
-dnf5 -y install  ghostty
-dnf5 -y copr disable scottames/ghostty
+#Bazaar
+dnf5 -y copr enable copr.fedorainfracloud.org/ublue-os/packages
+dnf5 -y install krunner-bazaar
+dnf5 -y copr disable copr.fedorainfracloud.org/ublue-os/packages
 
 # Use a COPR Example:
 #
