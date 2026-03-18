@@ -30,6 +30,8 @@ jobs:
   build_push:
     name: Build and push image
     runs-on: ubuntu-24.04
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     permissions:
       contents: read
