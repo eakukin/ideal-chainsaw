@@ -25,11 +25,6 @@ dnf5 -y copr enable copr.fedorainfracloud.org/ublue-os/packages
 dnf5 -y install krunner-bazaar
 dnf5 -y copr disable copr.fedorainfracloud.org/ublue-os/packages
 
-#web app manager
-dnf5 -y copr enable ublue-os/webapp-manager
-dnf5 -y install webapp-manager
-dnf5 -y copr disable ublue-os/webapp-manager
-
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
@@ -39,4 +34,4 @@ dnf5 -y copr disable ublue-os/webapp-manager
 
 #### Example for enabling a System Unit File
 
-systemctl enable podman.socket
+#systemctl enable podman.socket
