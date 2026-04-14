@@ -25,6 +25,12 @@ dnf5 -y copr enable copr.fedorainfracloud.org/ublue-os/packages
 dnf5 -y install krunner-bazaar
 dnf5 -y copr disable copr.fedorainfracloud.org/ublue-os/packages
 
+# Install latest amdgpu_top x86_64 RPM from GitHub releases
+AMDGPU_TOP_RPM_URL="$(curl -fsSL https://api.github.com/repos/Umio-Yasuno/amdgpu_top/releases/latest | grep -o 'https://[^"]*amdgpu_top-[^"]*\.x86_64\.rpm' | head -n 1)"
+wget -O /tmp/amdgpu_top.rpm "${AMDGPU_TOP_RPM_URL}"
+dnf5 install --nogpgcheck -y /tmp/amdgpu_top.rpm
+rm -f /tmp/amdgpu_top.rpm
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
